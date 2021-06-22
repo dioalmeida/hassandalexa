@@ -1,0 +1,71 @@
+- id: '1621768714067'
+  alias: Door Sensor Automation
+  description: ''
+  use_blueprint:
+    path: dioalmeida/door_sensor.yaml
+    input:
+      contact_sensor: binary_sensor.0x00158d0001d85134_contact
+      device_identifier: 5317cd793b09849ae121edc429e9ff91
+
+- id: '1623586136912'
+  alias: Movement Sensor Automation
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: bd5d79e6d4dfcb09c7ef4ba27736f475
+    entity_id: binary_sensor.0x00158d00024edb65_occupancy
+    domain: binary_sensor
+  condition: []
+  action:
+  - device_id: 5317cd793b09849ae121edc429e9ff91
+    domain: mobile_app
+    type: notify
+    title: Someone is in your room!
+    message: Movement Sensor
+  mode: single
+
+- id: '1623956099956'
+  alias: High Temperature
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: f4233671f139f7266e90270a8331ea42
+    entity_id: sensor.0x00158d000247eaf6_temperature
+    domain: sensor
+    above: 22
+    below: 0
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  condition: []
+  action:
+  - device_id: 5317cd793b09849ae121edc429e9ff91
+    domain: mobile_app
+    type: notify
+    title: Temperature/Humidity Sensor
+    message: 'You might want to open a window, temperature may be rising. '
+  mode: single
+
+- id: '1623956322201'
+  alias: Low Temperature
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: f4233671f139f7266e90270a8331ea42
+    entity_id: sensor.0x00158d000247eaf6_temperature
+    domain: sensor
+    above: 0
+    below: 14
+  condition: []
+  action:
+  - device_id: 5317cd793b09849ae121edc429e9ff91
+    domain: mobile_app
+    type: notify
+    title: Low Temperature
+    message: Temperature is falling, you might want to close the windows.
+  mode: single

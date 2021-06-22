@@ -1,0 +1,54 @@
+{
+  "external_converters": [],
+  "devices": [
+    "devices.yaml"
+  ],
+  "groups": [
+    "groups.yaml"
+  ],
+  "homeassistant": true,
+  "permit_join": true, #can be changed to false after initial discovery
+  "mqtt": {
+    "base_topic": "zigbee2mqtt",
+    "user": "addons",
+    "password": "ooGohqu5Thaegh5tuoKa5quekeebophahngaijooquaic0Ohk9bein1bima3zoke",
+    "server": "mqtt://core-mosquitto:1883"
+  },
+  "serial": {
+    #use the device name that will discover the sensors(i.e.: dongle)
+    "port": "/dev/serial/by-id/usb-Texas_Instruments_TI_CC2531_USB_CDC___0X00124B000E8D95CD-if00"
+  },
+  "advanced": {
+    "log_level": "warn",
+    "pan_id": 6754,
+    "channel": 11,
+    "network_key": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      13
+    ],
+    "availability_blocklist": [],
+    "availability_passlist": []
+  },
+  "device_options": {},
+  "blocklist": [],
+  "passlist": [],
+  "queue": {},
+  "frontend": {
+    "port": 8099
+  },
+  "experimental": {}
+}

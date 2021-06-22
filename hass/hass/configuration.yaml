@@ -1,0 +1,47 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Alexa
+alexa:
+  smart_home:
+    endpoint: https://api.amazonalexa.com/v3/events
+    client_id: amzn1.application-oa2-client.2e4680d1d0a24343851aa249b98c259e
+    client_secret: 44a3b8d86a15184bbf9a772844d40aa7c8ca2aa21780e76b4b12985d59ef21ef
+
+    #filter:
+    #  include_entities:
+    #    - binary_sensor.*
+    #    - sensor.*
+    #  include_entity_globs:
+    #    - binary_sensor.*_temperature
+
+    entity_config:
+      binary_sensor.0x00158d0001d85134_contact:
+        name: "Room door"
+        description: "Room contact sensor."
+        display_categories: CONTACT_SENSOR
+
+      binary_sensor.0x00158d00024edb65_occupancy:
+        name: "Motion sensor"
+        description: "Room motion sensor."
+        display_categories: CAMERA
+
+      sensor.0x00158d000247eaf6_temperature:
+        name: "Temperature sensor"
+        description: "Room temperature sensor."
+        display_categories: TEMPERATURE_SENSOR
+
+# Example configuration.yaml entry for the HTTP component for DuckDNS
+http:
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Text to speech
+tts:
+  platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
